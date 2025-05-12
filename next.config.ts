@@ -1,4 +1,3 @@
-// next.config.ts
 import type { NextConfig } from 'next'
 import type { Configuration } from 'webpack'
 
