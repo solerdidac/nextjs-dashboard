@@ -1,18 +1,19 @@
-import type { NextConfig } from 'next';
+// next.config.ts
+import type { NextConfig } from 'next'
+import type { Configuration } from 'webpack'
 
 const nextConfig: NextConfig = {
-  // Si necesitas otras opciones de Next.js, añádelas aquí
-  webpack(config, { isServer }) {
-    // Asegúrate de que existan las propiedades resolve y alias
-    config.resolve = config.resolve || {};
+  webpack: (
+    config: Configuration,
+    { isServer }: { isServer: boolean }
+  ): Configuration => {
+    config.resolve = config.resolve || {}
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      // Redirige cualquier require('bcrypt') a bcryptjs
       bcrypt: 'bcryptjs',
-    };
-
-    return config;
+    }
+    return config
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
